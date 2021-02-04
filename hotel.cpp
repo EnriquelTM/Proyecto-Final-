@@ -1,45 +1,54 @@
-#include <iostream>
-#include "cliente.h"
+#include<iostream>
+#include<stdlib.h>//exit
+#include<fstream> //acceder a ficheros
 #include "hotel.h"
 using namespace std;
 
-void hotel::inicio(){
-    int opcion;
-    do {
-        cout << "HOTEL" << endl;
-        cout<<"1. Habitaciones disponibles" << endl;
-        cout<<"2. Cancelados" << endl;
-        cout<<"3. check_in" << endl;
-        cout<<"4. check_out" << endl;
-        cout<<"5. SALIR" << endl;
-        cin>>opcion;
+void hotel::check_in(){
+    ofstream checkin;
+    string habitacion;
+    checkin.open("d://proyecto//checkin.txt",ios::app);
 
-        switch (opcion)
-        {
-        case 1:
-            habitaciones();
-            break;
-
-        case 2:
-            pagos_cancelados();
-            break;
-
-        case 3:
-            check_in1();
-            break;
-
-        case 4:
-            check_out1();
-            break;
-
-        default:
-            cout << "Esta opción no es valida." << endl;
-            break;}
+    if(checkin.fail()){
+        cout << "No se pudo abrir el archivo ";
+        exit(1);
     }
-    while (opcion != 5);
+
+    checkin << "\t\t\t\t\tHOTEL SAN MARINO" << endl;
+    checkin << "¿Que habitacion desea?";
+    cout << "¿Que habitacion desea?";
+    cin >> habitacion;
+    getline(cin, habitacion);
+    checkin.close();
+   
 }
 
-void hotel::habitaciones(){
-    return habitaciones - (cliente.get_habitacion);
+void hotel::check_out(){
+    ofstream checkout;
+    ifstream checkin;
+    string habitacion;
+    checkout.open("d://proyecto//checkout.txt",ios::app);
+    checkin.open("d://proyecto//checkin.txt",ios::in);
+
+    if(checkout.fail()){
+        cout << "No se pudo abrir el archivo ";
+        exit(1);
+    }
+
+    checkout << "\t\t\t\t\tHOTEL SAN MARINO" << endl;
+    checkout << "¿En que habitacion estaba?";
+    cout << "¿En que habitacion estaba?";
+    cin >> habitacion;
+    getline(cin, habitacion);
+    checkout.close();
+    checkin.close();
 }
 
+
+bool hotel::habitacion(int n){
+    for (indice; indice <= habitaciones; indice++){
+        if (n == indice){
+            return true; 
+        } else {return false;}
+    }
+}
