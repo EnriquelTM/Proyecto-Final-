@@ -1,54 +1,56 @@
 #include<iostream>
-#include<stdlib.h>//exit
+#include<cstdlib>//exit
 #include<fstream> //acceder a ficheros
+#include <cstdio>
+#include <conio.h>
 #include "hotel.h"
 using namespace std;
 
 void hotel::check_in(){
-    ofstream checkin;
-    string habitacion;
-    checkin.open("d://proyecto//checkin.txt",ios::app);
+    checkin = fopen("checkin.txt", "a+");
+    printf("HOTEL SAN MARINO");
 
-    if(checkin.fail()){
-        cout << "No se pudo abrir el archivo ";
-        exit(1);
-    }
+    do{
+        printf("\nNombre del cliente:");
+        scanf("%s", nombre);
 
-    checkin << "\t\t\t\t\tHOTEL SAN MARINO" << endl;
-    checkin << "¿Que habitacion desea?";
-    cout << "¿Que habitacion desea?";
-    cin >> habitacion;
-    getline(cin, habitacion);
-    checkin.close();
-   
+        printf("\nCuantas noches?:");
+        scanf("%d", noches);
+        
+        printf("\nHabitacion: %d",n);
+        --n;
+
+        printf("\nDesea agregar otro cliente?  s/n");
+        resp = getch();
+
+
+        fprintf(checkin, "%s","Nombre del cliente: ");
+        fprintf(checkin, "%s \n", nombre);
+        fprintf(checkin, "%s","Noches: ");
+        fprintf(checkin, "%s \n", noches);
+        fprintf(checkin, "%s","Habitación: ");
+        fprintf(checkin, "%d \n\n", n);
+
+    } while(resp == 's' || resp == 'S');
+
+    fclose(checkin);
 }
 
 void hotel::check_out(){
-    ofstream checkout;
-    ifstream checkin;
-    string habitacion;
-    checkout.open("d://proyecto//checkout.txt",ios::app);
-    checkin.open("d://proyecto//checkin.txt",ios::in);
+    checkout = fopen("checkout.txt", "a+");
+    printf("HOTEL SAN MARINO");
+    
+    char cliente[30];
+    char resp;
 
-    if(checkout.fail()){
-        cout << "No se pudo abrir el archivo ";
-        exit(1);
-    }
+    do{
+        printf("\nNombre del cliente:");
+        scanf("%s", cliente);
 
-    checkout << "\t\t\t\t\tHOTEL SAN MARINO" << endl;
-    checkout << "¿En que habitacion estaba?";
-    cout << "¿En que habitacion estaba?";
-    cin >> habitacion;
-    getline(cin, habitacion);
-    checkout.close();
-    checkin.close();
-}
+        printf("\nDesea eliminar al cliente?  s/n");
+        resp = getch();
 
+    } while(resp == 's' || resp == 'S');
 
-bool hotel::habitacion(int n){
-    for (indice; indice <= habitaciones; indice++){
-        if (n == indice){
-            return true; 
-        } else {return false;}
-    }
+    fclose(checkout);
 }
