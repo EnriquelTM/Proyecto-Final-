@@ -1,7 +1,10 @@
 #include<iostream>
 #include<stdlib.h>//exit
 #include<fstream> //acceder a ficheros
+#include <stdio.h>
+#include <conio.h>
 #include "hotel.h"
+#include "hotel.cpp"
 using namespace std;
 
 void inicio(){
@@ -36,7 +39,5 @@ void inicio(){
 int main(){
     
     inicio();
-
-    system("pause");
     return 0;
 }
