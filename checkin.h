@@ -1,45 +1,49 @@
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
+#include <cstdio>
+#include <conio.h>
+#include "hotel.h"
 using namespace std;
 
-
-
-class Checkin {
-    private:
-        string dni;
-        string telefono;
-        string nombre; 
-        string apellido;
-        string noches;
+class Checkin : public hotel{
 
     public:
+        int dni;
+        int telefono;
+        string nombre; 
+        string apellido;
+        int noches;
+        int habitacion;
+    
         Checkin ();
-        void setCheckin(string, string, string , string, string);
-        string getDni();
-        string getTelefono();
+        void setCheckin(int, int, string , string, int, int);
+        int getDni();
+        int getTelefono();
         string getNombre ();
         string getApellido ();
-        string getNoches ();
+        int getNoches ();
+        int getHabitacion();
 };
 
     Checkin :: Checkin (){
     }
 
     //establecemos valores a los atribu
-    void Checkin :: setCheckin (string _dni, string _telefono, string _nombre, string _apellido, string _noches){
+    void Checkin :: setCheckin (int _dni, int _telefono, string _nombre, string _apellido, int _noches, int _habitacion){
         dni = _dni;
         telefono =  _telefono;
         nombre = _nombre;
         apellido = _apellido;
         noches = _noches;
+        habitacion = _habitacion;
     }
 
-    string Checkin ::getDni(){
+    int Checkin ::getDni(){
         return dni;
     }
 
-    string Checkin ::getTelefono(){
+    int Checkin ::getTelefono(){
         return telefono;
     }
 
@@ -51,6 +55,10 @@ class Checkin {
         return apellido;
     }
 
-    string Checkin :: getNoches (){
+    int Checkin :: getNoches (){
         return noches;
     }   
+
+    int Checkin :: getHabitacion (){
+        return habitacion;
+    }
